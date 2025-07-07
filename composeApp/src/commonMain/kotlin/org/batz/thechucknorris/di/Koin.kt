@@ -10,14 +10,14 @@ import org.batz.thechucknorris.domain.repository.JokesRepository
 import org.batz.thechucknorris.domain.repository.JokesRepositoryImpl
 import org.batz.thechucknorris.domain.usecase.GetJokeCategories
 import org.batz.thechucknorris.presentation.categories.CategoriesViewModel
-import org.batz.thechucknorris.util.httpClientEngine
-import org.batz.thechucknorris.util.isDebug
+import org.batz.thechucknorris.util.*
 import org.koin.core.context.startKoin
 import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 
 fun initKoin() {
+    initLogger(isDebug)
     startKoin {
         modules(
             ktorModule,

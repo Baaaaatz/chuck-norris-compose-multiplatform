@@ -38,11 +38,13 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.material3)
             implementation(compose.ui)
+            implementation(compose.uiTooling)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(libs.androidx.navigationCompose)
+            implementation(libs.androidx.material.icons)
 
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.cio)
@@ -59,6 +61,8 @@ kotlin {
 
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlin.serialization)
+
+            implementation(libs.napier)
         }
 
         iosMain.dependencies {

@@ -5,11 +5,12 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.*
+import androidx.navigation.toRoute
 import kotlinx.coroutines.launch
 import org.batz.thechucknorris.di.initKoin
 import org.batz.thechucknorris.presentation.categories.CategoriesScreen
-import org.batz.thechucknorris.presentation.routes.CategoriesRoute
-import org.batz.thechucknorris.presentation.routes.ChuckNorrisJokesNavigation
+import org.batz.thechucknorris.presentation.joke.JokeScreen
+import org.batz.thechucknorris.presentation.routes.*
 import org.batz.thechucknorris.theme.TheChuckNorrisAppTheme
 import org.batz.thechucknorris.util.observers.ObserveAsEvents
 import org.batz.thechucknorris.util.snackbar.SnackbarController
@@ -40,7 +41,11 @@ fun App() {
                     NavHost(navController = navController, startDestination = ChuckNorrisJokesNavigation) {
                         navigation<ChuckNorrisJokesNavigation>(startDestination = CategoriesRoute) {
                             composable<CategoriesRoute> {
-                                CategoriesScreen()
+                                CategoriesScreen(navController = navController)
+                            }
+                            composable<JokeRoute> {
+                                val args = it.toRoute<JokeRoute>()
+                                JokeScreen(category = args.category)
                             }
                         }
                     }

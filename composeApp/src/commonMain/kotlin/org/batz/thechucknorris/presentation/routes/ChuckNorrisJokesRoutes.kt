@@ -7,3 +7,6 @@ object ChuckNorrisJokesNavigation
 
 @Serializable
 object CategoriesRoute
+
+@Serializable
+data class JokeRoute(val category: String)

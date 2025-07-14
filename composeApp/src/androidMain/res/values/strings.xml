@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">The Chuck Norris App</string>
+    <string name="title_categories">Categories</string>
+    <string name="title_joke">Joke about %s</string>
 </resources>

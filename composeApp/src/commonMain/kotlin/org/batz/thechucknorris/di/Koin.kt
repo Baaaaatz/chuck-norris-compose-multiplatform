@@ -8,18 +8,20 @@ import kotlinx.serialization.json.Json
 import org.batz.thechucknorris.data.remote.JokesRemoteSource
 import org.batz.thechucknorris.domain.repository.JokesRepository
 import org.batz.thechucknorris.domain.repository.JokesRepositoryImpl
+import org.batz.thechucknorris.domain.usecase.GetJoke
 import org.batz.thechucknorris.domain.usecase.GetJokeCategories
 import org.batz.thechucknorris.presentation.categories.CategoriesViewModel
+import org.batz.thechucknorris.presentation.joke.JokeViewModel
 import org.batz.thechucknorris.util.*
 import org.koin.core.context.startKoin
-import org.koin.core.module.dsl.singleOf
-import org.koin.core.module.dsl.viewModelOf
+import org.koin.core.module.dsl.*
 import org.koin.dsl.module
 
 fun initKoin() {
     initLogger(isDebug)
     startKoin {
         modules(
+            utilModule,
             ktorModule,
             dataModule,
             repositoryModule,
@@ -27,6 +29,10 @@ fun initKoin() {
             viewModelModule
         )
     }
+}
+
+val utilModule = module {
+    single<DispatchersProvider> { DefaultDispatcher() }
 }
 
 val dataModule = module {
@@ -39,10 +45,14 @@ val repositoryModule = module {
 
 val useCaseModule = module {
     singleOf(::GetJokeCategories)
+    singleOf(::GetJoke)
 }
 
 val viewModelModule = module {
     viewModelOf(::CategoriesViewModel)
+    viewModel { (category: String) ->
+        JokeViewModel(category, get(), get())
+    }
 }
 
 val ktorModule = module {

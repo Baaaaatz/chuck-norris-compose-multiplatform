@@ -1,4 +1,4 @@
-package org.batz.thechucknorris.presentation.categories
+package org.batz.thechucknorris.presentation.joke
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,20 +7,20 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.batz.thechucknorris.domain.state.UiState
-import org.batz.thechucknorris.domain.usecase.GetJokeCategories
+import org.batz.thechucknorris.domain.usecase.GetJoke
 import org.batz.thechucknorris.util.DispatchersProvider
 import org.batz.thechucknorris.util.snackbar.*
 
-class CategoriesViewModel(
-    private val getJokeCategories: GetJokeCategories,
-    private val dispatcher: DispatchersProvider,
-) :
-    ViewModel() {
+class JokeViewModel(
+    private val category: String,
+    private val getJoke: GetJoke,
+    dispatcher: DispatchersProvider,
+) : ViewModel() {
     private val _uiState = MutableStateFlow<UiState>(UiState.Init)
     val uiState = _uiState.asStateFlow()
 
-    private val _categories = MutableStateFlow<List<String>>(emptyList())
-    val categories = _categories.asStateFlow()
+    private val _joke = MutableStateFlow<String?>(null)
+    val joke = _joke.asStateFlow()
 
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         viewModelScope.launch {
@@ -31,8 +31,8 @@ class CategoriesViewModel(
     init {
         viewModelScope.launch(dispatcher.io + exceptionHandler) {
             _uiState.value = UiState.Loading
-            val categories = getJokeCategories.run()
-            _categories.value = categories
+            val joke = getJoke.run(category)
+            _joke.value = joke
             _uiState.value = UiState.Complete
         }
     }

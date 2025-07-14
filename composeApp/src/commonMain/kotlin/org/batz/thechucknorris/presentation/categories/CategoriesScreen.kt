@@ -6,29 +6,36 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import kotlinx.coroutines.launch
-import org.batz.thechucknorris.util.snackbar.*
+import androidx.navigation.NavController
+import org.batz.thechucknorris.domain.state.UiState
+import org.batz.thechucknorris.presentation.composables.CommonLoader
+import org.batz.thechucknorris.presentation.routes.JokeRoute
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
+import thechucknorrisapp.composeapp.generated.resources.Res
+import thechucknorrisapp.composeapp.generated.resources.title_categories
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CategoriesScreen(
+    navController: NavController,
     modifier: Modifier = Modifier,
     viewModel: CategoriesViewModel = koinViewModel(),
 ) {
     val categories by viewModel.categories.collectAsStateWithLifecycle()
-    val coroutineScope = rememberCoroutineScope()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Categories") }
+                title = { Text(stringResource(Res.string.title_categories)) }
             )
         }
     ) { paddingContent ->
@@ -52,14 +59,7 @@ fun CategoriesScreen(
                         CategoryWidget(
                             category = it,
                             onClick = {
-                                coroutineScope.launch {
-                                    SnackbarController.sendEvent(
-                                        SnackbarEvent(
-                                            "$it is clicked, should navigate to next screen.",
-                                            snackbarType = SnackbarType.INFO,
-                                        )
-                                    )
-                                }
+                                navController.navigate(JokeRoute(it))
                             },
                         )
                     }
@@ -67,6 +67,7 @@ fun CategoriesScreen(
             }
             Spacer(modifier = modifier.windowInsetsPadding(WindowInsets.navigationBars))
         }
+        CommonLoader(shouldShow = uiState == UiState.Loading)
     }
 }
 

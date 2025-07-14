@@ -4,15 +4,9 @@ android-compileSdk = "35"
 android-minSdk = "24"
 android-targetSdk = "35"
 androidx-activity = "1.10.1"
-androidx-appcompat = "1.7.1"
-androidx-constraintlayout = "2.2.1"
-androidx-core = "1.16.0"
-androidx-espresso = "3.6.1"
 androidx-lifecycle = "2.9.1"
-androidx-testExt = "1.2.1"
 composeMultiplatform = "1.8.2"
-junit = "4.13.2"
-kotlin = "2.1.21"
+kotlin = "2.1.20"
 kotlin-serialization = "1.8.1"
 ktor = "3.1.3"
 coroutines = "1.10.2"
@@ -20,19 +14,21 @@ koin = "4.1.0"
 coil = "3.2.0"
 navigationCompose = "2.9.0-beta03"
 materialIcons = "1.7.3"
-napier = "2.7.1"
+napier = "2.6.1"
+turbine = "1.2.1"
+koin-test = "4.0.2"
+coroutines-core = "1.9.0"
+mockative = "3.0.1"
+ksp = "2.1.20-1.0.31"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-serialization" }
-androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
-androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
-androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidx-constraintlayout" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtimeCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 androidx-navigationCompose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
-androidx-material-icons = {module = "org.jetbrains.compose.material:material-icons-core", version.ref = "materialIcons"}
+androidx-material-icons = { module = "org.jetbrains.compose.material:material-icons-core", version.ref = "materialIcons" }
 
 # Ktor
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
@@ -57,13 +53,14 @@ koin-compose-viewmodel-navigation = { module = "io.insert-koin:koin-compose-view
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 
 # Debugging
-napier = { module = "io.github.aakira:napier", version.ref = "napier"}
+napier = { module = "io.github.aakira:napier", version.ref = "napier" }
 
 # Testing
-androidx-testExt-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-testExt" }
-androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidx-espresso" }
-kotlin-testJunit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
-junit = { module = "junit:junit", version.ref = "junit" }
+kotlin-test-annotations_common = { module = "org.jetbrains.kotlin:kotlin-test-annotations-common", version.ref = "kotlin" }
+coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines-core" }
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
+koin-test = { group = "io.insert-koin", name = "koin-test", version.ref = "koin-test" }
+mockative = { group = "io.mockative", name = "mockative", version.ref = "mockative" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -72,3 +69,5 @@ composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMul
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+mockative = { id = "io.mockative", version.ref = "mockative" }
+google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

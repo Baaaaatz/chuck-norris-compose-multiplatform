@@ -45,7 +45,10 @@ fun App() {
                             }
                             composable<JokeRoute> {
                                 val args = it.toRoute<JokeRoute>()
-                                JokeScreen(category = args.category)
+                                JokeScreen(
+                                    navController = navController,
+                                    category = args.category
+                                )
                             }
                         }
                     }

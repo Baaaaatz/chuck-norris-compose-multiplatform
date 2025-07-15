@@ -62,7 +62,6 @@ kotlin-test-annotations_common = { module = "org.jetbrains.kotlin:kotlin-test-an
 coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines-core" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 koin-test = { group = "io.insert-koin", name = "koin-test", version.ref = "koin-test" }
-mokkery = { group = "dev.mokkery", name = "mokkery-gradle", version.ref = "mokkery" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

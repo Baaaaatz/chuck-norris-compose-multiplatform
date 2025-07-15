@@ -80,7 +80,6 @@ kotlin {
             implementation(libs.coroutines.test)
             implementation(libs.turbine)
             implementation(libs.koin.test)
-//            implementation(libs.mokkery)
         }
     }
 }

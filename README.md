@@ -19,7 +19,7 @@ A **Kotlin Multiplatform** starter app showcasing shared Compose UI across Andro
 | [Kotlinx Coroutines](https://github.com/Kotlin/kotlinx.coroutines) | Asynchronous programming & Flow handling |
 | [Kotlinx Serialization](https://github.com/Kotlin/kotlinx.serialization) | JSON serialization                       |
 | [Ktor](https://ktor.io/)        | HTTP client for API requests              |
-| [Mokkery](https://github.com/mokkery/mokkery) or MockK | Unit testing mocks                        |
+| [Mokkery](https://github.com/mokkery/mokkery) | Unit testing mocks                        |
 | [Turbine](https://github.com/cashapp/turbine) | Flow testing utilities                    |
 
 ## 🧱 ComposeApp Module

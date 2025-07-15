@@ -1,14 +1,37 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+# Chuck Norris Compose Multiplatform
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+A **Kotlin Multiplatform** starter app showcasing shared Compose UI across Android & iOS with clean architecture, DI, and testable ViewModels.
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+## 🚀 Features
 
+- Shared UI logic implemented in `composeApp/commonMain`.
+- Reusable **Composable** screens for Android and iOS.
+- **ViewModel + StateFlow** backed UI states with auto-loading on first collect.
+- **Dependency Injection** using Koin.
+- **Testable architecture** with `DispatchersProvider` and mocking via Mokkery or MockK.
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+## 📦 Libraries Used
+
+| Library                         | Purpose                                   |
+|---------------------------------|-------------------------------------------|
+| [Jetpack Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/) | Shared UI across Android and iOS         |
+| [Koin](https://insert-koin.io/) | Dependency Injection for ViewModels and services |
+| [Kotlinx Coroutines](https://github.com/Kotlin/kotlinx.coroutines) | Asynchronous programming & Flow handling |
+| [Kotlinx Serialization](https://github.com/Kotlin/kotlinx.serialization) | JSON serialization                       |
+| [Ktor](https://ktor.io/)        | HTTP client for API requests              |
+| [Mokkery](https://github.com/mokkery/mokkery) or MockK | Unit testing mocks                        |
+| [Turbine](https://github.com/cashapp/turbine) | Flow testing utilities                    |
+
+## 🧱 ComposeApp Module
+
+- Hosts native implementation of UI and ViewModel in a **single shared module**.
+- Exposes fully usable Composable screens for **both Android and iOS hosts**.
+- You can integrate this module in any native Kotlin/iOS project:
+  ```kotlin
+  // e.g., in a SwiftUI ViewController or Android Activity:
+  setContent {
+    ChuckNorrisAppTheme {
+      CategoriesScreen(/* ... */)
+    }
+  }
+  

@@ -34,7 +34,7 @@ fun JokeScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(
+            CenterAlignedTopAppBar(
                 navigationIcon = {
                     Box(
                         modifier = modifier

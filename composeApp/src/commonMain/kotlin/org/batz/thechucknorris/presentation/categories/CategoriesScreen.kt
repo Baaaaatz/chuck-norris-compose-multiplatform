@@ -34,7 +34,7 @@ fun CategoriesScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(
+            CenterAlignedTopAppBar(
                 title = { Text(stringResource(Res.string.title_categories)) }
             )
         }

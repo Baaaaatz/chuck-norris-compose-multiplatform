@@ -1,7 +1,8 @@
 package org.batz.thechucknorris.domain.usecase
 
-import io.mockative.coEvery
-import io.mockative.mock
+import dev.mokkery.answering.returns
+import dev.mokkery.everySuspend
+import dev.mokkery.mock
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.*
@@ -10,7 +11,7 @@ import kotlin.test.*
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class GetJokeCategoriesTest {
-    private val jokesRepository = mock(JokesRepository::class)
+    private val jokesRepository = mock<JokesRepository>()
     private val useCase = GetJokeCategories(jokesRepository)
 
     @BeforeTest
@@ -26,7 +27,7 @@ class GetJokeCategoriesTest {
     @Test
     fun `loads categories`() = runTest {
         val expectedCategories = listOf("Programming", "General", "Dark")
-        coEvery { jokesRepository.getCategories() }.invokes { expectedCategories }
+        everySuspend { jokesRepository.getCategories() } returns expectedCategories
         val result = useCase.run()
         assertEquals(expectedCategories, result)
     }

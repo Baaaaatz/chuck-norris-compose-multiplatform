@@ -6,7 +6,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinSerialization)
-    alias(libs.plugins.mockative)
+    alias(libs.plugins.mokkery)
     alias(libs.plugins.google.ksp)
 }
 
@@ -69,13 +69,18 @@ kotlin {
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
         }
+
+        jvmTest.dependencies {
+            implementation(libs.kotlin.test.junit)
+        }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+            implementation(libs.kotlin.test.common)
             implementation(libs.kotlin.test.annotations.common)
             implementation(libs.coroutines.test)
             implementation(libs.turbine)
             implementation(libs.koin.test)
-            implementation(libs.mockative)
+//            implementation(libs.mokkery)
         }
     }
 }

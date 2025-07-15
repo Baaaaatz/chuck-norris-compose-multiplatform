@@ -18,8 +18,8 @@ napier = "2.6.1"
 turbine = "1.2.1"
 koin-test = "4.0.2"
 coroutines-core = "1.9.0"
-mockative = "3.0.1"
 ksp = "2.1.20-1.0.31"
+mokkery = "2.8.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -56,11 +56,13 @@ coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" 
 napier = { module = "io.github.aakira:napier", version.ref = "napier" }
 
 # Testing
+kotlin-test-common = { module = "org.jetbrains.kotlin:kotlin-test-common", version.ref = "kotlin" }
+kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 kotlin-test-annotations_common = { module = "org.jetbrains.kotlin:kotlin-test-annotations-common", version.ref = "kotlin" }
 coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines-core" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 koin-test = { group = "io.insert-koin", name = "koin-test", version.ref = "koin-test" }
-mockative = { group = "io.mockative", name = "mockative", version.ref = "mockative" }
+mokkery = { group = "dev.mokkery", name = "mokkery-gradle", version.ref = "mokkery" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -69,5 +71,5 @@ composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMul
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-mockative = { id = "io.mockative", version.ref = "mockative" }
 google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+mokkery = { id = "dev.mokkery", version.ref = "mokkery" }

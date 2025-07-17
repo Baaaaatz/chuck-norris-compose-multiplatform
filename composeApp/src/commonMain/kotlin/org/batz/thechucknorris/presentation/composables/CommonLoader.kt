@@ -13,10 +13,11 @@ fun CommonLoader(
     modifier: Modifier = Modifier,
 ) {
     if (shouldShow) {
-        Box(modifier = modifier.fillMaxSize()) {
-            Box(modifier = modifier.align(Alignment.Center)) {
-                CircularProgressIndicator()
-            }
+        Box(
+            modifier = modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            CircularProgressIndicator()
         }
     }
 }

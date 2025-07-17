@@ -18,7 +18,11 @@ class JokeViewModel(
     private val _uiState = MutableStateFlow<UiState>(UiState.Init)
     val uiState = _uiState.asStateFlow()
         .onStart { onInit() }
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000L), UiState.Init)
+        .stateIn(
+            viewModelScope,
+            SharingStarted.WhileSubscribed(5000L),
+            UiState.Init
+        )
 
     private val _joke = MutableStateFlow<String?>(null)
     val joke = _joke.asStateFlow()

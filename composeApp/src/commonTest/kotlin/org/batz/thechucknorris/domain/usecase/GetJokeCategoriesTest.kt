@@ -6,13 +6,14 @@ import dev.mokkery.mock
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.*
+import org.batz.thechucknorris.TestDispatchers
 import org.batz.thechucknorris.domain.repository.JokesRepository
 import kotlin.test.*
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class GetJokeCategoriesTest {
     private val jokesRepository = mock<JokesRepository>()
-    private val useCase = GetJokeCategories(jokesRepository)
+    private val useCase = GetJokeCategories(jokesRepository, TestDispatchers())
 
     @BeforeTest
     fun setUp() {

@@ -51,7 +51,7 @@ val useCaseModule = module {
 val viewModelModule = module {
     viewModelOf(::CategoriesViewModel)
     viewModel { (category: String) ->
-        JokeViewModel(category, get(), get())
+        JokeViewModel(category, get())
     }
 }
 

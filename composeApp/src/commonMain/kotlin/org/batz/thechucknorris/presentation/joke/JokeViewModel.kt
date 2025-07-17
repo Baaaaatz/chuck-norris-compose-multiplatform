@@ -7,13 +7,11 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import org.batz.thechucknorris.domain.state.UiState
 import org.batz.thechucknorris.domain.usecase.GetJoke
-import org.batz.thechucknorris.util.DispatchersProvider
 import org.batz.thechucknorris.util.snackbar.*
 
 class JokeViewModel(
     private val category: String,
     private val getJoke: GetJoke,
-    private val dispatcher: DispatchersProvider,
 ) : ViewModel() {
     private val _uiState = MutableStateFlow<UiState>(UiState.Init)
     val uiState = _uiState.asStateFlow()
@@ -34,7 +32,7 @@ class JokeViewModel(
     }
 
     private fun onInit() {
-        viewModelScope.launch(dispatcher.io + exceptionHandler) {
+        viewModelScope.launch(exceptionHandler) {
             _uiState.value = UiState.Loading
             val joke = getJoke.run(category)
             _joke.value = joke

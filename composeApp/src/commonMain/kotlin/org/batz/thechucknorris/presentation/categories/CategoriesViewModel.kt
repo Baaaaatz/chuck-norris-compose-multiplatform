@@ -7,12 +7,10 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import org.batz.thechucknorris.domain.state.UiState
 import org.batz.thechucknorris.domain.usecase.GetJokeCategories
-import org.batz.thechucknorris.util.DispatchersProvider
 import org.batz.thechucknorris.util.snackbar.*
 
 class CategoriesViewModel(
     private val getJokeCategories: GetJokeCategories,
-    private val dispatcher: DispatchersProvider,
 ) : ViewModel() {
     private val _uiState = MutableStateFlow<UiState>(UiState.Init)
     val uiState = _uiState.asStateFlow()
@@ -33,7 +31,7 @@ class CategoriesViewModel(
     }
 
     private fun onInit() {
-        viewModelScope.launch(dispatcher.io + exceptionHandler) {
+        viewModelScope.launch(exceptionHandler) {
             _uiState.value = UiState.Loading
             val categories = getJokeCategories.run()
             _categories.value = categories
